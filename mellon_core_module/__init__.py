@@ -1,39 +1,26 @@
 __author__ = "Paul Schifferer <paul@schifferers.net>"
 
-# Import flask dependencies
-from flask import (
-    Blueprint,
-    request,
-    render_template,
-    flash,
-    g,
-    session,
-    redirect,
-    url_for,
-    make_response,
-)
-
-# Import password / encryption helper tools
-from werkzeug import check_password_hash, generate_password_hash
-
-# Import the database object from the main app module
-# from app import db
-from app.common import constants
-
+from flask import Blueprint, make_response, render_template, g
 import json
 
-
-# Define the blueprint: 'auth', set its url prefix: app.url/auth
-core = Blueprint("core", __name__, url_prefix="/")
+# Define the blueprint: 'core', set its url prefix: app.url/
+blueprint = Blueprint("core", __name__, url_prefix="/")
+# metrics = g["metrics"]
 
 
 # Set the route and accepted methods
-@core.route("/", methods=["GET"])
+@blueprint.route("/", methods=["GET"])
+# @metrics.counter(
+#     "invocation_by_type",
+#     "Number of invocations by type",
+#     labels={"item_type": lambda: request.view_args["type"]},
+# )
 def index():
     return render_template("main.html")
 
 
-@core.route("status", methods=["GET"])
+@blueprint.route("/status", methods=["GET"])
+# @metrics.do_not_track()
 def status():
     try:
         r = {
