@@ -24,11 +24,13 @@ ENV CSRF_SESSION_KEY="CSRF_SESSION_KEY_HERE"
 ENV SECRET_KEY="SECRET_KEY_HERE"
 ENV SLACK_APP_ID="SLACK_APP_ID_HERE"
 ENV SENTRY_DSN="SENTRY_DSN_HERE"
+ENV HOST="0.0.0.0"
+ENV PORT="5000"
 
 COPY requirements.txt /opt/flask-app
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
 
-# CMD ["flask", "run"]
-CMD [ "waitress-server", "--call", "mellon_core_service:create_app" ]
+CMD [ "flask", "run", "-h", "${HOST}", "-p", "${PORT}" ]
+# CMD [ "waitress-serve", "--call", "mellon_core_service:create_app" ]

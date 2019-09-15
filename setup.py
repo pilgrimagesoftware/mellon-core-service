@@ -8,6 +8,5 @@ setup(
     zip_safe=False,
     install_requires=[
         "mellon-common",
-        "mellon-app-core",
-        "waitress"
+        "mellon-app-core"
         ])
