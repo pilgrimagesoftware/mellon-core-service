@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-service
+  labels:
+    app: mellon
+    service: core
+spec:
+  selector:
+    app: mellon
+    service: core
+  ports:
+  - name: api
+    port: 5000
+    targetPort: api
+    protocol: TCP

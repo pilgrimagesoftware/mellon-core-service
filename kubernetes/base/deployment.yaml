@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-service
+  labels:
+    app: mellon
+    service: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mellon
+      service: core
+  template:
+    metadata:
+      labels:
+        app: mellon
+        service: core
+    spec:
+      containers:
+      - name: core-service
+        image: sweetrpg/mellon-core-service
+        imagePullPolicy: Always
+        ports:
+        - name: api
+          containerPort: 5000
+        env: []
+        envFrom:
+        - configMapRef:
+            name: core-service
+        - secretRef:
+            name: core-service
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
+          limits:
+            cpu: "1.0"
+            memory: "300Mi"

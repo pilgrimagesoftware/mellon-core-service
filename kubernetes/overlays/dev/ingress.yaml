@@ -1,0 +1,23 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: core-service
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
+    traefik.ingress.kubernetes.io/preserve-host: "true"
+    kubernetes.io/ingress.allow-http: "true"
+    traefik.ingress.kubernetes.io/frontend-entry-points: "http,https"
+  labels:
+    app: mellon
+    service: core
+spec:
+  rules:
+  - host: mellon.sweetrpg.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: core-service
+          servicePort: 5000
