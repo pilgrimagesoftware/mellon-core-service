@@ -10,7 +10,7 @@ RUN apt-get -q update                    \
 RUN mkdir -p /opt/flask-app/
 
 COPY config/flask-app.ini /opt/flask-app
-COPY mellon_core_service /opt/flask-app/
+COPY mellon_core_service /opt/flask-app/mellon_core_service
 # RUN ls -lR /opt/flask-app
 
 WORKDIR /opt/flask-app

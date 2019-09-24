@@ -1,2 +1,3 @@
 git+https://github.com/sweetrpg/mellon-common.git@develop
 git+https://github.com/sweetrpg/mellon-app-core.git@develop
+blinker
